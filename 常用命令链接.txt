@@ -1,0 +1,347 @@
+邮箱
+apricity.qian@quectel.com
+Admin@123456
+
+git
+apricity
+apricity.quectel
+
+ssh sw-framework@10.66.99.1
+ssh apricity@10.66.128.235
+
+
+./build.sh dist -j8
+
+teamview
+andrew.hu@quectel.com
+Andrew_123456
+
+
+sc66
+fastboot flash super super.img
+fastboot flash boot boot.img
+fastboot flash dtbo dtbo.img
+fastboot flash recovery recovery.img
+fastboot flash persist persist.img
+
+fastboot flash userdata userdata.img
+fastboot flash --disable-verification vbmeta vbmeta.img
+fastboot flash --disable-verification vbmeta_system vbmeta_system.img
+
+
+
+sc60
+fastboot flash boot boot.img
+fastboot flash aboot emmc_appsboot.mbn
+fastboot flash dtbo dtbo.img
+fastboot flash system system.img
+fastboot flash vendor vendor.img
+fastboot flash userdata userdata.img
+fastboot --disable-verification flash vbmeta vbmeta.img
+
+
+
+
+
+
+
+
+rm -rf out/target/product/sdm660_64/system/ out/target/product/sdm660_64/product/ out/target/product/sdm660_64/vendor/ out/dist/
+
+
+
+
+adb shell "dumpsys window | grep mCurrentFocus"
+adb logcat | findStr 1008689
+
+
+
+\\sshfs\sw-framework@10.66.99.1\
+
+
+
+
+
+javah -jni -d ../jni com.example.jnitest.NDKTools   -d目录  -jni生产jni头文件
+
+adb root & adb shell dmesg > dmest.log   //kernal log
+
+
+adb shell getprop | grep patch
+开发者选项 oem unlocking
+adb reboot bootloader
+fastboot flashing unlock
+
+编译好的policy，手机上可以从这两个地方取：1. /vendor(或者odm)/etc/selinux/precompiled_sepolicy; 2. /sys/fs/selinux/policy
+sepolicy-analyze policy attribute socket_between_core_and_vendor_violators
+adb shell getenforce，会返回 Enforcing 或 Permissive
+adb shell setenforce 1或0，设置其为 Enforcing 或 Permissive
+
+
+
+adb shell am instrument -w -e class com.google.android.media.gts.DrmSessionManagerTest#testReclaimSession com.google.android.media.gts/androidx.test.runner.AndroidJUnitRunner
+
+
+反编译
+apktool d test.apk
+
+apktool d -s -f test.apk
+-d 反编译 apk 文件
+-s 不反编译 dex 文件，而是将其保留
+-f 如果目标文件夹存在，则删除后重新反编译
+
+重新打包
+apktool b b_test -o newtest.apk
+-b 是指 build
+b_test 是刚才反编译出的文件所在的目录
+-o 用于指定新的文件名称，这里指定为「newtest.apk」
+
+
+d2j-dex2jar classes.dex
+
+
+out/target/product/msm8953_64/system/product/priv-app/Settings/Settings.apk
+
+60 8953
+66 sdm660
+200R 8937
+200L/100L SL8541E
+200K UIS8581
+665S trinket-userdebug
+
+
+
+
+
+用adb shell 获取当前手机所有features
+
+adb shell pm list features
+
+
+
+
+
+adb赋予和撤销权限
+
+adb shell pm grant com.eg.android.AlipayGphone android.permission.READ_EXTERNAL_STORAGE
+adb shell pm revoke com.eg.android.AlipayGphone android.permission.READ_EXTERNAL_STORAGE
+查看应用权限
+adb shell pm dump com.android.cts.verifier |find "permission"
+
+
+设置分辨率
+adb shell wm size 1280x1080
+
+adb shell settings get global multi_sim_sms
+adb pull /data/system/users/0/settings_global.xml
+
+
+
+win + r 输入\\192.168.11.252  映射网盘驱动器
+
+
+
+
+/data/system/dropbox
+/data/anr
+/data/tombstone
+
+
+
+out\target\common\obj\JAVA_LIBRARIES\framework_intermediates\classes.jar\这个文件就是我们要的framework.jar包
+
+查询单双卡
+getprop persist.radio.multisim.config
+
+
+echo -e "at+qcfg=\"simconfig\",1\r\n">/dev/smd11
+echo -e "at+qcfg=\"simconfig\"\r\n">/dev/smd11
+
+echo -e "at+qmbncfg=\"autosel\",1\r\n">/dev/smd11
+
+刷gsi
+adb reboot fastboot
+fastboot erase userdata
+fastboot erase system
+fastboot flash system system.img
+
+
+adb shell setprop persist.panel.orientation 90
+
+
+adb shell wm density 300
+adb shell wm size 800x1280
+
+
+
+
+SC60_Android9.0_R05_c25_r00:apricity:package:添加Edge浏览器
+
+jira链接：https://ticket.quectel.com/browse/SW2MSM8953-8254
+详述更改类型：新增需求
+适用哪些项目：SC600
+详述更改内容：添加Edge浏览器
+详述测试方法：软测测试
+软测测试方法：查看是否有Edge浏览器
+
+
+SC20_Android5.1_R01_r139:apricity:SystemUI:SystemUI crashes after optimizing the boot speed
+
+jira链接：https://ticket.quectel.com/browse/SW2MSM8909-4779
+详述更改类型：内部缺陷修改
+适用哪些项目：SC20
+详述更改内容：Change the single and dual card judgment method
+详述测试方法：软件测试
+软测测试方法：优化开机速度后，开机查看SystemUI是否崩溃
+
+mango-lwm2m:apricity:lwm2m:Adapt to Android8。
+
+详述更改类型：适配Android8。
+适用哪些项目：mango-lwm2m
+详述更改内容：Adapt to Android8。
+详述测试方法：无
+软测测试方法：无需测试
+
+SC60_Android9.0_R05_c25_r001:apricity:telephony:插verizon卡查看首选网络类型显示为有误
+
+jira链接：https://ticket.quectel.com/browse/SW2MSM8953-8262
+详述更改类型：新增需求
+适用哪些项目：SC600
+详述更改内容：更改字符串显示
+详述测试方法：软件测试
+软测测试方法：插verizon卡插卡首选网络类型显示界面为是否都为点击选择界面显示为LTE/UMTS
+
+SC665S_Android10.0_R01_r028:apricity:telephony:同时连接WiFi和插sim卡，流量优先使用的是sim卡流量
+
+jira链接：https://ticket.quectel.com/browse/SW2QCM6125-77
+详述更改类型：内部缺陷修改
+适用哪些项目：SC665
+详述更改内容：update config.xml
+详述测试方法：软件测试
+软测测试方法：同时连接WiFi和插sim卡，验证使用的是否是wifi
+
+adb logcat -v time -b all
+
+
+
+
+qcril_qmi_nas_unsolicited_indication_cb_helper
+
+at+qmbncfg="AutoSel",1
+
+QMI_VOICE_DTMF_IND_MSG
+
+vendor/qcom/proprietary/qcril-hal/modules/voice/src/qcril_qmi_voice.cpp
+
+QCRIL_LOG_INFO( "entry with id %d", (int)call_qmi_id );
+
+
+
+
+device/qcom/common/base.mk
+
+
+adb push out/target/product/sdm660_64/vendor/bin/helloworld /vendor/bin
+
+
+[global]
+        workgroup = WORKGROUP
+        server string = Ted Samba Server %v
+        netbios name = TedSamba
+       security = user
+    #security = share
+        map to guest = Bad User
+        passdb backend = tdbsam
+
+[Fileshare]
+        comment = share some files
+    path = /home/apricity
+        public = yes
+        only guest = no
+        writeable = yes
+        create mask = 0644
+        directory mask = 0755
+
+
+[\[\e[32m\]\u@\h \W\[\e[m\]]\$
+
+
+export LC_ALL=C
+
+
+
+找到out\target\common\obj\JAVA_LIBRARIES\framework_intermediates目录下的classes.jar文件，这个文件就是我们要的framework.jar包。
+
+
+
+
+git remote set-url origin <url>  / git remote origin set-url [url]
+git remote rm origin
+git remote add origin [url]
+
+PS1="\[\e[37m\][\[\e[32m\]\u\[\e[37m\]@\h \[\e[36m\]\w\[\e[0m\]]\\$ "
+
+
+
+
+JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1 -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
+vendor/proprietary_apps/modemconfigtool/modemconfigapp/res/values/string.xml
+
+
+export LC_ALL=C
+
+
+
+
+
+
+git config core.filemode false
+
+
+
+本文基于Android8.1系统源码，常量的定义在文件./build/make/core/envsetup.mk中
+
+TOPDIR – 源码根目录
+
+
+#在init.rc 里面加上打印日志
+ write /dev/kmsg "[UART0]=== weiqifa === start post-fs-data"
+
+
+./device/qcom/sdm660_64/system.prop:227:persist.certification.mode=true
+
+
+
+git show 1e4bc82c01
+
+
+Message Prompt: 1 Registration update successful
+nautilus .
+
+dumpsys connectivity
+
+
+
+
+SG500Q_Android11.0_R01_r020:apricity:SystemUI:开机初始界面无时间，注网等相关信息显示
+
+jira链接：SWSM4350-42  SWSM4350-116
+详述更改类型：内部缺陷修改
+适用哪些项目：SG500Q
+详述更改内容：overlay config.xml文件
+详述测试方法：软件测试
+软测测试方法：查看界面无时间，注网等相关信息显示
+
+SC60_Android9_R05_r029:apricity:package:添加Edge浏览器
+
+
+
+./build/tools/releasetools/ota_from_target_files --block -p out/host/linux-x86 -k build/target/product/security/testkey -v out/target/product/msm8953_64/obj/PACKAGING/target_files_intermediates/msm8953_64-target_files-eng.apricity.zip update_beta.zip
+
+update-alternatives --list python
+sudo update-alternatives --config python
+sudo update-alternatives --install /usr/lib/java java /jdk8存放路径/bin/java 300  
+sudo update-alternatives --install /usr/lib/javac javac /jdk8存放路径/bin/javac 300   
+
+
+fastboot flash:raw boot boot.img

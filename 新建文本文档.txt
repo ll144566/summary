@@ -1,0 +1,18 @@
+            frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
+            // Set the preferred network mode to target desired value or Default
+            // value defined in system property
+            StringBuilder val = new StringBuilder();
+            List<Integer> defaultNetworks = TelephonyProperties.default_network();
+            int phoneCount = 1;
+            TelephonyManager telephonyManager = getTelephonyManager();
+            if (telephonyManager != null) {
+                phoneCount = telephonyManager.getSupportedModemCount();
+            }
+            for (int phoneId = 0; phoneId < phoneCount; phoneId++) {
+                int mode = defaultNetworks.size() <= phoneId
+                        || defaultNetworks.get(phoneId) == null
+                        ? TelephonyManager.DEFAULT_PREFERRED_NETWORK_MODE : defaultNetworks.get(phoneId);
+                if (phoneId > 0) val.append(',');
+                val.append(mode);
+            }
+            loadSetting(stmt, Settings.Global.PREFERRED_NETWORK_MODE, val.toString());
